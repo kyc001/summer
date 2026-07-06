@@ -1,0 +1,42 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+  "python.envFile": "${workspaceFolder}\\.env",
+  "python.terminal.activateEnvironment": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.venv": true,
+    "**/d:\\Study\\26sp\\summer\\report\\main.aux": true,
+    "**/d:\\Study\\26sp\\summer\\report\\main.log": true,
+    "**/d:\\Study\\26sp\\summer\\report\\main.gz": true,
+    "**/d:\\Study\\26sp\\summer\\report\\main.out": true,
+    "**/main.aux": true,
+    "**/main.log": true,
+    "**/main.gz": true,
+    "**/main.out": true
+  },
+  "latex-workshop.latex.recipe.default": "tectonic",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "tectonic",
+      "tools": [
+        "tectonic"
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "tectonic",
+      "command": "C:\\Users\\kyc\\AppData\\Local\\Programs\\Tectonic\\tectonic.exe",
+      "args": [
+        "--synctex",
+        "--keep-logs",
+        "--keep-intermediates",
+        "%DOC%"
+      ]
+    }
+  ]
+}

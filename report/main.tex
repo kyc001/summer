@@ -1,0 +1,267 @@
+\documentclass[UTF8,zihao=-4,a4paper]{ctexart}
+
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fontspec}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{目\quad 录}
+\renewcommand{\lstlistingname}{代码}
+\hypersetup{hidelinks}
+
+\geometry{
+  top=2.54cm,
+  bottom=2.54cm,
+  left=3.17cm,
+  right=3.22cm
+}
+
+\setCJKmainfont{FangSong}
+\setCJKfamilyfont{fs}{FangSong}
+\setCJKfamilyfont{zhongsong}{STZhongsong}
+\setCJKfamilyfont{kai}{STKaiti}
+\setmainfont{Times New Roman}
+\onehalfspacing
+\pagestyle{plain}
+\graphicspath{{report/}{report/img/}{img/}}
+
+\definecolor{nkuBlue}{HTML}{2F6F9F}
+\definecolor{softBlue}{HTML}{DCEBF7}
+\definecolor{softGreen}{HTML}{E8EFD5}
+
+\lstdefinestyle{reportcode}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{black!4},
+  frame=single,
+  rulecolor=\color{black!25},
+  breaklines=true,
+  columns=fullflexible
+}
+
+\newtcolorbox{reportbox}[2][]{
+  enhanced,
+  breakable,
+  colback=#2!8,
+  colframe=#2!70!black,
+  arc=1mm,
+  boxrule=0.5pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\titleformat{\section}
+  {\CJKfamily{kai}\zihao{4}}
+  {\thesection、}
+  {0.4em}
+  {}
+\titleformat{\subsection}
+  {\CJKfamily{fs}\zihao{-4}\bfseries}
+  {}
+  {0em}
+  {}
+
+\newcommand{\coverfield}[2]{%
+  \noindent
+  \makebox[4.2cm][l]{\zihao{3}\bfseries #1}%
+  \underline{\makebox[7.8cm][l]{\zihao{-2}\bfseries #2}}%
+  \par\vspace{0.9em}
+}
+
+\newcommand{\infoline}[2]{%
+  \noindent\textbf{#1：}#2\par
+}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{0.6cm}
+  \includegraphics[width=0.48\textwidth]{NKU-name.png}\par
+  \vspace{0.8cm}
+  {\makebox[\textwidth][c]{\CJKfamily{zhongsong}\fontsize{36pt}{46pt}\selectfont 南开大学本科实习报告}\par}
+  \vspace{2.6cm}
+
+  \begin{minipage}{0.84\textwidth}
+    \coverfield{学号}{2310766}
+    \coverfield{姓名}{姓名}
+    \coverfield{年级}{2023级}
+    \coverfield{专业}{软件工程}
+    \coverfield{所属院（系）}{软件学院}
+    \coverfield{实习课程名称}{企业实训}
+    \coverfield{指导教师}{指导教师}
+  \end{minipage}
+
+  \vfill
+  {\zihao{4}\bfseries 2025年\quad 7 月\quad 24 日\par}
+\end{titlepage}
+
+\pagenumbering{Roman}
+\begin{center}
+  {\CJKfamily{zhongsong}\zihao{2} 摘\quad 要}
+\end{center}
+
+本报告围绕企业实训课程中的求职规划助手项目展开，按照学校本科实习报告模板梳理实习目的和要求、实习时间地点、实习单位和部门、实习内容以及实习总结等核心内容。报告结合项目实践过程，记录了从开发环境配置、基础技术学习，到岗位数据检索、向量推荐、接口封装和团队联调的完整训练链条。
+
+在版式上，模板保留原 Typst demo 中较强的展示能力，包括学校标识、彩色提示块、结构化表格、模块树和代码片段等元素；同时新增摘要、目录和参考文献，便于正式提交时形成更加完整的学术报告结构。
+
+\vspace{0.8em}
+\noindent\textbf{关键词：}企业实训；求职规划助手；LangChain；FastAPI；向量检索
+
+\clearpage
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\begin{center}
+  {\CJKfamily{zhongsong}\zihao{2} 说\quad 明}
+\end{center}
+
+\section{实习目的和要求}
+
+\subsection{实习目的}
+
+这次企业实训分为两个阶段。前期主要进行知识学习和小项目练习，目标是熟悉大模型应用开发流程、LangChain 的基本用法，以及前后端协作机制。通过这些基础训练，我们逐步掌握了从数据处理、模型调用到 API 封装的完整开发链条。
+
+后期进入综合项目阶段，围绕“求职规划助手”进行分工合作，完成职位搜索、简历生成、HR 模拟和面试安排等模块。整个过程不仅提升了技术能力，也锻炼了团队协作、项目管理和系统思维。
+
+\begin{reportbox}[实训目标概览]{nkuBlue}
+本报告按学校实习模板组织内容，重点覆盖实习目的、时间地点、单位部门、实习内容和实习总结五个部分。版式表现力参考原 Typst demo：保留图注、彩色提示块、结构化表格、代码片段和树状流程等常用报告元素。
+\end{reportbox}
+
+\subsection{实习要求}
+
+实训过程中，每位同学需要掌握 LangChain、FastAPI、ChromaDB 等核心工具的基本使用方法，并能独立完成一个小模块的开发。项目阶段要求参与需求分析、模块实现、联调测试和答辩展示，确保个人工作能够顺利接入团队系统。
+
+\section{实习时间、地点}
+
+\infoline{时间}{2025年6月30日-2025年7月26日}
+\infoline{地点}{南开大学津南校区综合实验楼 A314}
+
+\begin{table}[htbp]
+  \centering
+  \caption{实习阶段安排}
+  \rowcolors{2}{black!3}{white}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.5cm}>{\centering\arraybackslash}p{3cm}X}
+    \rowcolor{softBlue}
+    \toprule
+    阶段 & 时间 & 主要任务 \\
+    \midrule
+    准备学习 & 第 1-2 周 & 完成环境配置、LangChain 入门、小项目练习和接口调用训练 \\
+    综合开发 & 第 3-4 周 & 围绕求职规划助手开展模块开发、联调测试和项目答辩 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section{实习单位和部门}
+
+\infoline{实习单位}{中软国际信息技术有限公司}
+\infoline{所属部门}{南开大学软件学院}
+\infoline{项目名称}{基于多 Agent 多阶段流程的求职规划助手}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.18\textwidth]{NKU-logo.png}
+  \caption{南开大学标识}
+\end{figure}
+
+\begin{reportbox}[单位与部门]{nkuBlue}
+实习单位承担企业级项目训练，学院负责课程组织与过程管理。正式报告中可以继续补充企业简介、部门职责、个人分工和项目背景。
+\end{reportbox}
+
+\section{实习内容}
+
+本次实训围绕人工智能在实际业务场景下的创新应用展开。项目以真实企业级任务为主线，贯穿人工智能工程应用、软件系统开发、团队协作和职业素养提升等多重目标，较为完整地还原了软件项目研发过程中的工作场景。
+
+在学习准备阶段，我们系统学习了大语言模型原理、LangChain 框架、FastAPI 服务开发、前端交互以及数据库基本操作。通过教师讲解和实践任务，我们逐步熟悉了开发环境、接口调用方式和团队协作流程，为后续项目开发打下基础。
+
+在项目开发阶段，我主要参与职位搜索与数据存储相关模块。该模块需要完成岗位数据采集、清洗、结构化存储、语义向量化和检索接口封装。系统使用关系型数据库保存结构化字段，同时使用向量数据库支持语义检索与智能推荐，从而兼顾传统筛选和大模型语义理解能力。
+
+开发过程中，我重点关注数据表设计、接口规范、检索效率和异常处理。通过分批写入、索引设计、接口参数校验和日志记录，模块能够较稳定地支撑分页查询、条件检索和相似职位推荐等业务需求。
+
+\begin{reportbox}[技术栈说明]{green}
+系统围绕后端 API、前端交互、关系型数据库、向量数据库和大模型服务构建。不同组件通过清晰接口协作，便于模块独立开发和后续维护。
+\end{reportbox}
+
+\begin{table}[htbp]
+  \centering
+  \caption{项目核心技术栈}
+  \rowcolors{2}{black!3}{white}
+  \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{2.7cm}>{\centering\arraybackslash}p{3cm}X}
+    \rowcolor{softGreen}
+    \toprule
+    模块 & 技术 & 作用 \\
+    \midrule
+    后端服务 & FastAPI & 提供职位检索、推荐和数据管理接口 \\
+    应用编排 & LangChain & 组织模型调用、工具调用和链式流程 \\
+    结构化存储 & SQLite & 保存职位、公司、搜索历史等结构化数据 \\
+    语义检索 & ChromaDB & 存储 embedding 并支持相似职位推荐 \\
+    前端展示 & Vue3 / Streamlit & 提供交互式页面和调试界面 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent\textbf{项目模块树}
+\begin{itemize}
+  \item 智能求职规划助手
+  \item 职位搜索模块：数据采集、SQL 检索、向量推荐
+  \item 简历生成模块
+  \item HR 模拟模块
+  \item 面试安排模块
+\end{itemize}
+
+\begin{lstlisting}[style=reportcode,language=Python,caption={职位搜索接口示例}]
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/jobs/search")
+def search_jobs(keyword: str, location: str | None = None):
+    """Return structured results and semantic recommendations."""
+    return {
+        "keyword": keyword,
+        "location": location,
+        "source": "sqlite + chromadb",
+    }
+\end{lstlisting}
+
+\section{实习总结：收获、体会以及实习建议等}
+
+回顾整个实习过程，从最初的系统学习、项目立项，到后期的技术攻关、模块集成和答辩展示，我获得了宝贵的工程实践经验。这段经历让我将课堂中学习到的软件工程方法、数据库知识和人工智能应用真正放到一个完整项目中验证和吸收。
+
+技术方面，我更加熟悉了现代 Web 服务开发、大模型应用集成、数据库设计和向量检索等内容。团队协作方面，我也体会到需求沟通、接口约定、文档维护和进度同步对项目落地的重要性。
+
+今后类似实习项目可以在前期进一步加强需求拆解和接口设计，尽早明确模块边界、数据格式和测试标准。这样既能减少后续联调成本，也能让团队成员更清楚各自工作的上下游关系。
+
+\begin{reportbox}[后续建议]{orange}
+建议在实习初期统一项目文档、接口规范和测试标准；在项目中期固定周会与代码评审节奏；在项目后期补齐部署说明、用户手册和复盘材料。
+\end{reportbox}
+
+\begin{reportbox}[总结]{green}
+这份模板既覆盖学校实习报告要求，也保留实验报告模板的展示能力。后续只需要替换封面信息、扩写各节正文，并按实际项目补充图表即可。
+\end{reportbox}
+
+\clearpage
+
+\section{参考文献}
+
+\begin{enumerate}
+  \item LangChain. LangChain Documentation. \url{https://docs.langchain.com/}.
+  \item FastAPI. FastAPI Documentation. \url{https://fastapi.tiangolo.com/}.
+  \item Chroma. Chroma Docs. \url{https://docs.trychroma.com/}.
+  \item SQLite. SQLite Documentation. \url{https://sqlite.org/docs.html}.
+\end{enumerate}
+
+\end{document}
