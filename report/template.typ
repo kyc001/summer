@@ -148,3 +148,36 @@
     #body
   ]
 }
+
+// Compatibility exports for the older demo.typ template API.
+#let indent() = h(2em)
+
+#let project(
+  course: "",
+  lab_name: "",
+  stu_name: "",
+  stu_num: "",
+  major: "",
+  department: "",
+  date: "",
+  show_content_figure: false,
+  watermark: none,
+  body,
+) = {
+  let date-text = if type(date) == array and date.len() >= 3 {
+    str(date.at(0)) + "-" + str(date.at(1)) + "-" + str(date.at(2))
+  } else {
+    str(date)
+  }
+
+  internship-report(
+    title: lab_name,
+    stu-num: stu_num,
+    stu-name: stu_name,
+    major: major,
+    department: department,
+    course: course,
+    date: date-text,
+    body,
+  )
+}
