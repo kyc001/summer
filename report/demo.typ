@@ -1,6 +1,7 @@
 #import "imports.typ": *
 #import "template.typ": project, indent
 
+#show: thmbox-init()
 #show: project.with(
   course: "计算机网络",
   lab_name: "TCP/IP实验",
